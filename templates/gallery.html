@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Фотогалерея</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { text-align: center; color: white; margin-bottom: 30px; }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .photo-card {
+            background: white; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .photo-card:hover { transform: translateY(-5px); }
+        .photo-card img {
+            width: 100%; height: 280px; object-fit: cover;
+        }
+        .footer { text-align: center; margin-top: 40px; color: rgba(255,255,255,0.7); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ваша галерея</h1>
+        <div class="gallery">
+            {% for url in photos %}
+            <div class="photo-card">
+                <img src="{{ url }}" alt="Фото">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="footer">Всего фото: {{ photos|length }}</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  photo-bot:
+    build: .
+    container_name: telegram_photo_gallery
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./photos:/app/photos
+      - ./galleries.json:/app/galleries.json
+    env_file:
+      - .env
